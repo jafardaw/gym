@@ -43,4 +43,51 @@ public function index()
     ]);
 }
 
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'completed' => 'required'
+    ]);
+
+    $task = Task::find($id);
+
+    if (!$task) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Task not found.'
+        ], 404);
+    }
+
+    $task->update([
+        'title' => $request->title,
+        'completed' => filter_var($request->completed, FILTER_VALIDATE_BOOLEAN)
+    ]);
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Task updated successfully.',
+        'data' => $task
+    ], 200);
+}
+
+public function destroy($id)
+{
+    $task = Task::find($id);
+
+    if (!$task) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Task not found.'
+        ], 404);
+    }
+
+    $task->delete();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Task deleted successfully.'
+    ], 200);
+}
+
 }
