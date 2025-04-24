@@ -27,7 +27,16 @@ Route::get('/updatetasks', [TaskController::class, 'update']);
 Route::post('/tasks', [TaskController2::class, 'store']);
 // Route::post('/tasks', [TaskController2::class, 'store']);
 
-
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::get('me', [AuthController::class, 'me']);
+});
 
 Route::get('/test', function () {
     return response()->json([

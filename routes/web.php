@@ -18,6 +18,9 @@ use App\Models\Player;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/screen', function () {
+    return view('screen');
+});
 
 Route::get('/players/getall', function () {
     $players = Player::all(); // إذا كان لديك موديل Player

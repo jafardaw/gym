@@ -46,4 +46,14 @@ class User extends Authenticatable
     return $this->hasMany(Post::class);
 }
 
+public function getJWTIdentifier()
+{
+    return $this->getKey();
+}
+
+public function getJWTCustomClaims()
+{
+    return [];
+}
+
 }
