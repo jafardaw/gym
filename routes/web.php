@@ -31,7 +31,7 @@ Route::get('/players/getall', function () {
 // web.php
 Route::get('/reset-password', [ResetPasswordController::class, 'showResetForm'])->name('reset.form');
 Route::post('/reset-password', [ResetPasswordController::class, 'handleReset'])->name('reset.handle');
-// routes/web.php
+Route::post('/profile_user', [ProfileController::class, 'store']);
 Route::get('/change-password', [ResetPasswordController::class, 'showChangePasswordForm'])->name('password.change.form');
 Route::post('/change-password', [ResetPasswordController::class, 'changePassword'])->name('password.change');
 

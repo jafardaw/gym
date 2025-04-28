@@ -57,4 +57,15 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    public function store(Request $request)
+{
+    $user = User::find(auth()->id()); // جلب المستخدم الحالي
+
+    $user->profile()->create([
+        'phone' => $request->phone,
+        'address' => $request->address,
+    ]);
+
+    return redirect('/profile')->with('success', 'تم إنشاء الملف الشخصي!');
+}
 }
