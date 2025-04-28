@@ -22,6 +22,14 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
+    public function post_user()
+    {
+        $user = User::with('posts')->find(1);
+
+        foreach ($user->posts as $post) {
+            echo $post->title;
+        }    }
+
 
     /**
      * Handle an incoming registration request.
@@ -48,4 +56,5 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+    
 }

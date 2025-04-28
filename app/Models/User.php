@@ -56,9 +56,15 @@ public function profile(){
 return $this->hasOne(Profile::class);
 }
 
+
 public function getJWTCustomClaims()
 {
     return [];
 }
+
+
+
+
+   
 
 }
