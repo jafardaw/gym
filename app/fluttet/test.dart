@@ -1,3 +1,8 @@
+theme: ThemeData(
+  textTheme: GoogleFonts.publicSansTextTheme(),
+),
+
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -293,6 +298,3 @@ class LoansPage extends StatelessWidget {
     );
   }
 }
-theme: ThemeData(
-  textTheme: GoogleFonts.publicSansTextTheme(),
-),
