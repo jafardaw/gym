@@ -20,9 +20,11 @@ public function getFullNameAttribute()
 {
     return $this->first_name . ' ' . $this->last_name;
 }
+
 public function getEmailAttribute($value)
 {
     $parts = explode('@', $value);
     return substr($parts[0], 0, 2) . '***@' . $parts[1];
 }
+
 }
