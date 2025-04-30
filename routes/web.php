@@ -34,6 +34,8 @@ Route::post('/reset-password', [ResetPasswordController::class, 'handleReset'])-
 Route::post('/profile_user', [ProfileController::class, 'store']);
 Route::get('/change-password', [ResetPasswordController::class, 'showChangePasswordForm'])->name('password.change.form');
 Route::post('/change-password', [ResetPasswordController::class, 'changePassword'])->name('password.change');
+Route::get('/account/suspended', [AccountStatusController::class, 'suspended'])
+     ->name('account.suspended');
 
 
 // Route::get('/players/create', [PlayerController::class, 'create']);
@@ -57,7 +59,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/players', [PlayerController::class, 'index'])->name('players.index');
     Route::post('/players/{id}/mark-day', [PlayerController::class, 'markDay'])->name('players.markDay');
     Route::post('/players/{id}/renew',[PlayerController::class,'renew'])->name('players.renew');
-
+    Route::middleware(['auth', 'user.status'])->group(function () {
+        Route::get('/dashboard', 'DashboardController@index');
+        Route::get('/profile', 'ProfileController@index');
+        // ... مسارات أخرى
+    });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
