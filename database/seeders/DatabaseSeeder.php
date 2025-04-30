@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
         ]);
+        Post::factory()->count(10)->create();
     }
 }
