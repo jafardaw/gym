@@ -60,13 +60,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/players/{id}/mark-day', [PlayerController::class, 'markDay'])->name('players.markDay');
     Route::post('/players/{id}/renew',[PlayerController::class,'renew'])->name('players.renew');
     Route::middleware(['auth', 'user.status'])->group(function () {
-        Route::get('/dashboard', 'DashboardController@index');
-        Route::get('/profile', 'ProfileController@index');
-        // ... مسارات أخرى
-    });
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+
 });
 
 require __DIR__.'/auth.php';
