@@ -31,5 +31,11 @@ public function getEmailAttribute($value)
 public function runEventandlistner()
 {
     LoanCreated::dispatch($loan);
-}}
+}
+public function runHelperSend()
+{
+    SendWelcomeEmail::dispatch($user);
+}
+
+}
 
