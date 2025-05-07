@@ -38,13 +38,11 @@ Route::group([
     Route::get('me', [AuthController::class, 'me']);
 });
 
-Route::get('/test', function () {
-    return response()->json([
-        'success' => true,
-        'message' => 'API is working!',
-        'data' => [
-            'name' => 'Laravel API',
-            'version' => '1.0'
-        ]
-    ]);
-});
+
+
+    Route::middleware('api')->group(function () {
+        Route::get('/test', function () {
+            return response()->json(['message' => 'API تعمل الآن!']);
+        });
+    });
+

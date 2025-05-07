@@ -19,6 +19,12 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
     ];
+    protected $listen = [
+        \App\Events\LoanCreated::class => [
+            \App\Listeners\SendLoanNotification::class,
+        ],
+    ];
+    
 
     /**
      * Register any events for your application.

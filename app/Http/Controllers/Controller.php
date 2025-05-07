@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Events\LoanCreated;
+
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -26,5 +28,8 @@ public function getEmailAttribute($value)
     $parts = explode('@', $value);
     return substr($parts[0], 0, 2) . '***@' . $parts[1];
 }
+public function runEventandlistner()
+{
+    LoanCreated::dispatch($loan);
+}}
 
-}
